@@ -6,7 +6,7 @@ import { CustomCard } from "./CustomCard";
 
 export const Display = () => {
   return (
-    <div className="bg-black p-5 rounded shadow-lg">
+    <div className="bg-black p-5 rounded shadow-lg mt-5">
       <div>
         <ButtonGroup aria-label="Basic example">
           <Button variant="primary">Left</Button>

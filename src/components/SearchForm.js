@@ -44,7 +44,10 @@ export const SearchForm = () => {
         {error ? (
           <Alert variant="danger">Movie not found!</Alert>
         ) : (
-          <CustomCard searchedMovies={searchedMovies} />
+          <CustomCard
+            setSearchedMovies={setSearchedMovies}
+            searchedMovies={searchedMovies}
+          />
         )}
       </div>
     </div>

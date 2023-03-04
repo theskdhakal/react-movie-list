@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
 
-export const CustomCard = ({ searchedMovies }) => {
+export const CustomCard = ({ searchedMovies, setSearchedMovies }) => {
   return (
     <div>
       <Card style={{ width: "18rem", color: "black" }}>
@@ -17,7 +17,9 @@ export const CustomCard = ({ searchedMovies }) => {
             <Button variant="info">Lazy</Button>
           </div>
           <div className="d-grid mt-3">
-            <Button variant="danger">Delete</Button>
+            <Button onClick={() => setSearchedMovies({})} variant="danger">
+              Delete
+            </Button>
           </div>
         </Card.Body>
       </Card>
