@@ -5,8 +5,9 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { CustomCard } from "./CustomCard";
 import { fetchMovies } from "./FetchHelper";
+// import { randomStrGenerator } from "./Utils";
 
-export const SearchForm = () => {
+export const SearchForm = ({ addMovie }) => {
   const strRef = useRef("");
   const [searchedMovies, setSearchedMovies] = useState({});
   const [error, setError] = useState(false);
@@ -18,6 +19,7 @@ export const SearchForm = () => {
     const data = await fetchMovies(str);
     if (data.Response === "True") {
       setSearchedMovies(data);
+      addMovie({ ...searchedMovies });
     } else {
       setError(true);
     }

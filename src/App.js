@@ -2,9 +2,25 @@ import "./App.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { SearchForm } from "./components/SearchForm";
 import { Display } from "./components/Display";
+import { useState } from "react";
 // import { CustomCard } from "./components/CustomCard";
 
 function App() {
+  const [movieList, setMovieList] = useState([]);
+  const addMovie = (data) => {
+    setMovieList([...movieList, data]);
+    console.log(movieList);
+  };
+
+  const movieMoodSwitcher = (imdbID, mood) => {
+    const tempArg = movieList.map((item) => {
+      if (item.imdbID === imdbID) {
+        item.mood = mood;
+      }
+      return item;
+    });
+    setMovieList(tempArg);
+  };
   return (
     <div className="wrapper bg-dark">
       <Container>
@@ -19,10 +35,10 @@ function App() {
         <hr />
 
         {/*form*/}
-        <SearchForm />
+        <SearchForm addMovie={addMovie} />
 
         {/*Display*/}
-        <Display />
+        <Display movieMoodSwitcher={movieMoodSwitcher} />
       </Container>
     </div>
   );

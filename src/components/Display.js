@@ -4,7 +4,9 @@ import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { CustomCard } from "./CustomCard";
 
-export const Display = () => {
+export const Display = ({ movieList, movieMoodSwitcher }) => {
+  // const happyMood = movieList.filter((item) => item.mood === "happy");
+  // const lazyMood = movieList.filter((item) => item.mood === "lazy");
   return (
     <div className="bg-black p-5 rounded shadow-lg mt-5">
       <div>
