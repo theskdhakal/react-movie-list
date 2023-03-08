@@ -1,44 +1,38 @@
 import "./App.css";
-import { Col, Container, Row } from "react-bootstrap";
+
+import { Container, Row, Col } from "react-bootstrap";
 import { SearchForm } from "./components/SearchForm";
 import { Display } from "./components/Display";
 import { useState } from "react";
-// import { CustomCard } from "./components/CustomCard";
 
 function App() {
   const [movieList, setMovieList] = useState([]);
-  const addMovie = (data) => {
-    setMovieList([...movieList, data]);
-    console.log(movieList);
+
+  const addMoveToList = (movie) => {
+    const tempArg = movieList.filter((itme) => itme.imdbID !== movie.imdbID);
+    setMovieList([...tempArg, movie]);
   };
 
-  const movieMoodSwitcher = (imdbID, mood) => {
-    const tempArg = movieList.map((item) => {
-      if (item.imdbID === imdbID) {
-        item.mood = mood;
-      }
-      return item;
-    });
-    setMovieList(tempArg);
+  const handleOnDelete = (imdbID) => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      setMovieList(movieList.filter((item) => item.imdbID !== imdbID));
+    }
   };
+
   return (
-    <div className="wrapper bg-dark">
+    <div className="wrapper bg-dark text-warning">
       <Container>
-        {/*title*/}
+        {/* title */}
         <Row>
           <Col>
-            <h1 className="mt-5 text-center text-warning">
-              My Movie collection
-            </h1>
+            <h1 className="mt-5 text-center"> My Movie Collection</h1>
           </Col>
         </Row>
         <hr />
 
-        {/*form*/}
-        <SearchForm addMovie={addMovie} />
+        <SearchForm addMoveToList={addMoveToList} />
 
-        {/*Display*/}
-        <Display movieMoodSwitcher={movieMoodSwitcher} />
+        <Display movieList={movieList} handleOnDelete={handleOnDelete} />
       </Container>
     </div>
   );
